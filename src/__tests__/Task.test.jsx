@@ -15,9 +15,9 @@ describe('Render Task component', () => {
 
 describe('Render checkbox', () => {
     test('checkbox reflects on completion status', () => {
-        render(<Checkbox type="checkbox" name="checkbox" completed={task.completed}/>)
+        render(<Checkbox type="checkbox" name="checkbox" completed={true}/>)
         
-        expect(screen.getByRole('checkbox', {name:'completed'})).toBeChecked()
+        expect(screen.getByRole('checkbox', {name:"checkbox"})).toBeChecked()
     })
 })
 

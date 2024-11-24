@@ -1,6 +1,6 @@
 function Checkbox({type, name, completed}) {
     return(
-        <input type={type} name={name} checked={completed}/>
+            <input type={type} name={name} aria-label={name} checked={completed} onChange={() => {}} />
     )
 }
 
