@@ -1,3 +1,4 @@
+import Checkbox from './Checkbox'
 function Task({task}) {
     return(
         <div>
