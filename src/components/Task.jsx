@@ -1,10 +1,10 @@
 import Checkbox from './Checkbox'
 function Task({task}) {
     return(
-        <div>
+        <li>
             <p>{task.title}</p>
             <Checkbox type="checkbox" name="checkbox" completed={task.completed}/>
-        </div>
+        </li>
     )
 }
 

@@ -3,6 +3,7 @@ import { describe, expect, test } from 'vitest';
 import Task from '../components/Task';
 import Button from '../components/Button';
 import Checkbox from '../components/Checkbox';
+import TaskList from '../components/TaskList';
 
 describe('Render Task component', () => {
     const task = {id:1, title:'Learn node.js', completed:true}
@@ -30,13 +31,12 @@ describe('render all components of taskList', () => {
         ]
         render(<TaskList tasks={tasks}/>)
 
-        const taskList = screen.getByRole('list')
-        const listItem = screen.getByRole('listitem') 
+        const listItem = screen.getAllByRole('listitem') 
 
-        expect(taskList).toHaveLength(tasks.length)
+        expect(listItem).toHaveLength(tasks.length)
 
-        tasks.forEach(task => {
-            expect(listItem).contain(item)
+        tasks.forEach((task, index) => {
+            expect(listItem[index]).toHaveTextContent(task.title)
         });
     })
 })
