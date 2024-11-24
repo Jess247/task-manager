@@ -2,6 +2,7 @@ import { fireEvent, getByAltText, render, screen } from '@testing-library/react'
 import { describe, expect, test } from 'vitest';
 import Task from '../components/Task';
 import Button from '../components/Button';
+import Checkbox from '../components/Checkbox';
 
 describe('Render Task component', () => {
     const task = {id:1, title:'Learn node.js', completed:true}
@@ -10,13 +11,14 @@ describe('Render Task component', () => {
         render(<Task task={task}/>)
         expect(screen.getByText('Learn node.js')).toBeInTheDocument()
     })
+})
 
+describe('Render checkbox', () => {
     test('checkbox reflects on completion status', () => {
-        render(<Task task={task}/>)
-        const checkbox = screen.getByRole('checkbox', {name:'completed'})
-        expect(checkbox).toBeChecked()
+        render(<Checkbox type="checkbox" name="checkbox" completed={task.completed}/>)
+        
+        expect(screen.getByRole('checkbox', {name:'completed'})).toBeChecked()
     })
-
 })
 
 describe('Render Button component', () => {
