@@ -21,6 +21,26 @@ describe('Render checkbox', () => {
     })
 })
 
+describe('render all components of taskList', () => {
+    test('render tasks in tasklist', () => {
+        const tasks = [
+            {id:1, title:'Learn node.js', completed:true},
+            {id:2, title:'Learn Express', completed:false},
+            {id:3, title:'Learn TypeScript', completed:true}
+        ]
+        render(<TaskList tasks={tasks}/>)
+
+        const taskList = screen.getByRole('list')
+        const listItem = screen.getByRole('listitem') 
+
+        expect(taskList).toHaveLength(tasks.length)
+
+        tasks.forEach(task => {
+            expect(listItem).contain(item)
+        });
+    })
+})
+
 describe('Render Button component', () => {
     test('renders a button with text and event', () => {
         const btnText = 'Click Me'
