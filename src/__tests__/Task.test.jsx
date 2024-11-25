@@ -1,9 +1,17 @@
 import { fireEvent, getByAltText, render, screen } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
+import Header from '../components/Header'
 import Task from '../components/Task';
 import Button from '../components/Button';
 import Checkbox from '../components/Checkbox';
 import TaskList from '../components/TaskList';
+
+describe('Render Header component', () => {
+    test('renders navigationlinks in header', () => {
+        const navLinks = ['Tasks', 'Completed']
+        render(<Header navLinks={navLinks}/>)
+    })
+})
 
 describe('Render Task component', () => {
     const task = {id:1, title:'Learn node.js', completed:true}
