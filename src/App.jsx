@@ -1,5 +1,4 @@
 import './App.css'
-import Task  from './components/Task'
 import Button from './components/Button'
 import TaskList from './components/TaskList'
 
