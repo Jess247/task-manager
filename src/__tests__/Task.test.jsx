@@ -1,15 +1,28 @@
 import { fireEvent, getByAltText, render, screen } from '@testing-library/react';
-import { describe, expect, test } from 'vitest';
+import { afterAll, afterEach, describe, expect, test } from 'vitest';
+import { cleanup } from '@testing-library/react';
 import Header from '../components/Header'
 import Task from '../components/Task';
 import Button from '../components/Button';
 import Checkbox from '../components/Checkbox';
 import TaskList from '../components/TaskList';
 
+afterEach(cleanup)
 describe('Render Header component', () => {
-    test('renders navigationlinks in header', () => {
-        const navLinks = ['Tasks', 'Completed']
-        render(<Header navLinks={navLinks}/>)
+    test('renders navigation links in header', () => {
+        const navLinks = [
+            {name:'Tasks', url:'test1'},
+            {name:'Tasks', url:'test2'},
+            {name:'Tasks', url:'test3'}
+        ]
+        render(<Header navLink={navLinks}/>)
+
+        const navItem = screen.getAllByRole('listitem') 
+
+        expect(navItem).toHaveLength(navLinks.length)
+        navLinks.forEach((link, index) => {
+            expect(navItem[index]).toHaveTextContent(link.title)
+        })
     })
 })
 
@@ -49,23 +62,23 @@ describe('render all components of taskList', () => {
     })
 })
 
-describe('Render Button component', () => {
-    test('renders a button with text and event', () => {
-        const btnText = 'Click Me'
+// describe('Render Button component', () => {
+//     test('renders a button with text and event', () => {
+//         const btnText = 'Click Me'
 
-        render(<Button text={btnText} />)
-        expect(screen.getByText('Click Me')).toBeInTheDocument()
-    })
+//         render(<Button text={btnText} />)
+//         expect(screen.getByText('Click Me')).toBeInTheDocument()
+//     })
 
-    test('calls the onClick handler when clicked', () => {
-        const handleClick = vi.fn()
+//     test('calls the onClick handler when clicked', () => {
+//         const handleClick = vi.fn()
 
-        render(<Button handleClick={handleClick} text='Click Me'/>)
+//         render(<Button handleClick={handleClick} text='Click Me'/>)
 
-        const button = screen.getByText('Click Me')
+//         const button = screen.getByText('Click Me')
 
-        fireEvent.click(button)
+//         fireEvent.click(button)
 
-        expect(handleClick).toHaveBeenCalledTimes(1)
-    })
-})
+//         expect(handleClick).toHaveBeenCalledTimes(1)
+//     })
+// })

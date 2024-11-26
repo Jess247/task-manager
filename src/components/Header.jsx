@@ -1,9 +1,14 @@
 import { SiRobotframework } from 'react-icons/si'
-function Header() {
+import NavLink from './NavLink'
+
+function Header({navLinks}) {
+
     return(
-        <Header>
-            <SiRobotframework />
-        </Header>
+        <header>
+            <ul>    
+                {navLinks.map((link, index) => <NavLink key={index} name={link.name} url={link.url}/>)}
+            </ul>
+        </header>
     )
 }
 
